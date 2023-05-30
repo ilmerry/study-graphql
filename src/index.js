@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 //   cache: new InMemoryCache(),
 // });
 const client = new ApolloClient({
-  uri: "https://countries.trevorblades.com",
+  uri: "https://sxewr.sse.codesandbox.io/",
   cache: new InMemoryCache(),
 });
 
