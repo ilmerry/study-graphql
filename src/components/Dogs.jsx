@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 
-export default function Dogs({ onDogSelected }) {
-  const { loading, error, data } = useQuery();
+export default function Dogs({ onDogSelected, query }) {
+  const { loading, error, data } = useQuery(query);
 
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
