@@ -2,19 +2,35 @@ import { useQuery, gql } from "@apollo/client";
 import DisplayLocations from "./components/DisplayLocations";
 
 function App() {
-  const GET_LOCATIONS = gql`
-    query GetLocations {
-      locations {
+  const GET_DOGS = gql`
+    query GetDogs {
+      dogs {
         id
-        name
-        description
-        photo
+        breed
       }
     }
   `;
+
+  function Dogs({ onDogSelected }) {
+    const { loading, error, data } = useQuery(GET_DOGS);
+
+    if (loading) return "Loading...";
+    if (error) return `Error! ${error.message}`;
+
+    return (
+      <select name="dog" onChange={onDogSelected}>
+        {data.dogs.map((dog) => (
+          <option key={dog.id} value={dog.breed}>
+            {dog.breed}
+          </option>
+        ))}
+      </select>
+    );
+  }
+
   return (
     <div>
-      <DisplayLocations locations={GET_LOCATIONS} />
+      <Dogs />
     </div>
   );
 }
